@@ -1,0 +1,50 @@
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model Employee {
+  id               String    @id @default(uuid())
+  fullName         String
+  displayName      String
+  department       String
+  designation      String
+  country          String
+  email            String    @unique
+  pictureUrl       String?
+  grade            String
+  employeeType     String
+  joinDate         DateTime
+  lastWorkingDate  DateTime?
+  firstLogin       DateTime?
+  lastLogin        DateTime?
+  company          String
+  dateOfBirth      DateTime
+  managerId        String?
+  manager          Employee? @relation("ManagerToEmployee", fields: [managerId], references: [id])
+  managedEmployees Employee[] @relation("ManagerToEmployee")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OTP {
+  id         String   @id @default(uuid())
+  email      String
+  otp        String
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime
+}

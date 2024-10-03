@@ -1,0 +1,73 @@
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Email</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin-top: 20px;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 700px; 
+      margin: 0 auto;
+    }
+
+    .logo, .email-image {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .heading {
+      text-align: center;
+      color: #1976D2;
+    }
+
+    .btn-primary {
+      margin-top: 10px;
+      background-color: #1976D2;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div style="padding: 20px;">
+      <div style="max-width: 100%;">
+        <img src="Images/logo.png" alt="Logo" style="max-width: 10%; height: auto;">
+      </div>
+      <div style="text-align: center; margin-top: 20px;">
+        <img src="Images//welcome-employees.png" alt="Welcome Email" style="max-width: 100%; height: 50%;">
+      </div>
+
+      <h3 style="text-align: center; color: #1976D2; margin-top: 20px;">Welcome to Sales Assist!</h3>
+
+      <p>Dear <%= username %>,</p>
+      <p>We're excited to welcome you to <%= role %>,. Thank you for joining our community!</p>
+
+      <div>
+        <p>Your journey with us begins now. Here are a few things you can do:</p>
+        <ul>
+          <li>Explore the features of Sales Assist.</li>
+          <li>Connect with other users and start engaging.</li>
+          <li>Customize your profile settings.</li>
+        </ul>
+
+        <p>Should you have any questions or need assistance, feel free to reach out to our support team.</p>
+        <p>Get started by clicking the button below:</p>
+        <a href="http://dev.salesassist.coderclub.site" style="background-color: #1976D2; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">Start Exploring</a>
+
+        <p style="margin-top: 10px;">Thank you again for choosing Sales Assist. We hope you enjoy your experience!</p>
+      </div>
+
+      <p style="margin-top: 20px; text-align: center;">Best regards,<br>Sales Assist Team</p>
+    </div>
+  </div>
+</body>
+
