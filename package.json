@@ -7,11 +7,7 @@
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV= ts-node-dev -r tsconfig-paths/register src/index.ts",
     "local": "cross-env NODE_ENV=local ts-node-dev -r tsconfig-paths/register src/index.ts",
-   
-    "postinstall": "chmod +x node_modules/.bin/tsc && chmod +x node_modules/.bin/tsc-alias",
-    "build": "node_modules/.bin/tsc && node_modules/.bin/tsc-alias",
-
-
+    "build": "tsc && tsc-alias",
     "start:build-dev": "pm2 start ecosystem.config.js --env development",
     "start:build-uat": "pm2 start ecosystem.config.js --env uat",
     "prisma:reset:dev": "npx dotenv -e src/.env.development -- prisma migrate reset",
