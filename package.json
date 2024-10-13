@@ -8,6 +8,7 @@
     "dev": "cross-env NODE_ENV= ts-node-dev -r tsconfig-paths/register src/index.ts",
     "local": "cross-env NODE_ENV=local ts-node-dev -r tsconfig-paths/register src/index.ts",
    
+    "postinstall": "chmod +x node_modules/.bin/tsc && chmod +x node_modules/.bin/tsc-alias",
     "build": "node_modules/.bin/tsc && node_modules/.bin/tsc-alias",
 
 
