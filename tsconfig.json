@@ -6,7 +6,8 @@
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
-    "typeRoots": ["./node_modules/@types", "./src/model"]
+    "typeRoots": ["./node_modules/@types", "./src/model"],
+    "types": ["node", "express-session"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

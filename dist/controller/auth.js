@@ -37,8 +37,11 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
+    console.log(username, password);
     const user = yield __1.prisma.user.findUnique({ where: { username } });
-    if (user && (yield bcrypt_1.default.compare(password, user.password))) {
+    console.log(user);
+    // bcrypt.compare()
+    if (user && password == user.password) {
         req.session.userId = user.id;
         res.json({ message: 'Logged in successfully' });
     }
@@ -61,7 +64,8 @@ const requestOTP = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             }
         });
         try {
-            yield (0, auth_1.sendOTPEmail)(email, otp);
+            const r = yield (0, auth_1.sendOTPEmail)(email, otp);
+            console.log(r);
             res.json({ message: 'OTP sent successfully' });
         }
         catch (error) {

@@ -25,9 +25,11 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request|any, res: Response) => {
   const { username, password } = req.body;
+  console.log(username, password )
   const user = await prisma.user.findUnique({ where: { username } });
-
-  if (user && await bcrypt.compare(password, user.password)) {
+console.log(user)
+// bcrypt.compare()
+  if (user &&  password== user.password) {
     req.session.userId = user.id;
     res.json({ message: 'Logged in successfully' });
   } else {
@@ -52,7 +54,8 @@ export const requestOTP = async (req: Request, res: Response) => {
     });
 
     try {
-      await sendOTPEmail(email, otp);
+    const r=  await sendOTPEmail(email, otp);
+      console.log(r)
       res.json({ message: 'OTP sent successfully' });
     } catch (error) {
       console.error('Failed to send OTP:', error);

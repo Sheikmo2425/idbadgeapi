@@ -20,7 +20,7 @@ const transporter = nodemailer_1.default.createTransport({
     secure: false,
     auth: {
         user: 'sheikmo2425v@gmail.com',
-        pass: 'zlot ttwq csto ykt'
+        pass: 'klkm xyql exri bxse'
     }
 });
 const generateOTP = () => {
