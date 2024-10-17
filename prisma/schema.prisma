@@ -8,18 +8,29 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum VochureType {
+  MultiUse
+  SingleUse  
+  ExpiryDate
+}
+enum EmployeeType {
+  Regular
+  PartTime
 
+}
 model Employee {
   id               String    @id @default(uuid())
   fullName         String
   displayName      String
   department       String
   designation      String
-  country          String
+  CountryCode  String?
+  country       Country?  @relation(fields: [ CountryCode], references: [countryCode])
   email            String    @unique
   pictureUrl       String?
-  grade            String
-  employeeType     String
+  gradeId           String
+  grade dictionary?@relation(fields:[gradeId],references:[id])
+  employeeType    EmployeeType
   joinDate         DateTime
   lastWorkingDate  DateTime?
   firstLogin       DateTime?
@@ -29,6 +40,9 @@ model Employee {
   managerId        String?
   manager          Employee? @relation("ManagerToEmployee", fields: [managerId], references: [id])
   managedEmployees Employee[] @relation("ManagerToEmployee")
+  isActive  Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model User {
@@ -37,14 +51,66 @@ model User {
   email     String   @unique
   password  String
   role      String
+  UserRole  UserRole? @relation(fields:[role],references:[name])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  isActive  Boolean @default(true)
 }
+model UserRole{
+  id   String   @id @default(uuid())
+  name  String @unique
+  users User[]
 
+}
 model OTP {
   id         String   @id @default(uuid())
   email      String
   otp        String
   createdAt  DateTime @default(now())
   expiresAt  DateTime
+}
+model Country {
+  id              String      @id @default(uuid())
+  name            String
+  currency_symbol  String
+  countryCode    String   @unique
+  currencyCode   String   
+  phone_code      String  
+  dictionaries dictionary[]
+  Employees Employee[]
+}
+model Vochure {
+  id          String      @id @default(uuid())
+  name        String
+  description String?
+  BrandId     String
+  brand       dictionary? @relation(fields: [BrandId], references: [id])
+  image       String?
+  typeId      VochureType
+  expiresAt   DateTime?
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+
+model dictionary {
+  id   String @id @default(uuid())
+  name String
+  description String?
+  CountryCode  String?
+  grade String? 
+  catId String?
+  category category ?@relation(fields:[catId],references:[id])
+  country       Country?  @relation(fields: [CountryCode], references: [countryCode])
+ Vochures Vochure[]
+ Employees Employee[]
+  isActive  Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model category {
+ id   String @id @default(uuid())
+  name String
+  dictionaries dictionary[]
 }

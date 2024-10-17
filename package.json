@@ -21,7 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.12.1",
+    "@prisma/client": "^5.20.0",
     "@types/cors": "^2.8.17",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
@@ -60,7 +60,7 @@
     "@types/swagger-ui-express": "^4.1.6",
     "cross-env": "^7.0.3",
     "dotenv-cli": "^7.3.0",
-    "prisma": "^5.9.1",
+    "prisma": "^5.20.0",
     "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",

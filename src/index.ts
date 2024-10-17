@@ -8,6 +8,7 @@ import authRoutes from './routers/authRouter';
 import cors from 'cors';
 import userRouter from './routers/userRouter';
 import employeeRouter from './routers/employeeRouter';
+import dictionaryRouter from './routers/dictionaryRouter';
 
 const app = express();
 export const prisma = new PrismaClient();
@@ -29,6 +30,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/auth', authRoutes);
 app.use('/users', userRouter);
 app.use('/employees', employeeRouter);
+app.use('/dictionary',dictionaryRouter)
 
 const PORT: any = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {

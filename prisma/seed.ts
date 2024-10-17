@@ -1,12 +1,24 @@
-import { seedEmployees } from "./seeds/employees";
-import { seedUsers } from "./seeds/user";
+import { PrismaClient } from '@prisma/client';
+import { seedUserRoles } from './seeds/userRole';
+import { seedUsers } from './seeds/user';
+import seedCountries from './seeds/countries.seed';
+import { seedEmployees } from './seeds/employees';
+import { seedVochures } from './seeds/vochure';
+import { seedDictionaries } from './seeds/dictionary';
+import { seedCategories } from './seeds/category';
 
+const prisma = new PrismaClient();
 
-async function main() {
+const main = async () => {
+  await seedCountries(prisma);
+  await seedCategories()
+  await seedDictionaries();
+  await seedUserRoles();
+  await seedUsers();  
   await seedEmployees();
-  await seedUsers();
+  await seedVochures();
 
-}
+};
 
 main()
   .catch((e) => {
@@ -14,7 +26,5 @@ main()
     process.exit(1);
   })
   .finally(async () => {
-    const { PrismaClient } = require('@prisma/client');
-    const prisma = new PrismaClient();
     await prisma.$disconnect();
   });

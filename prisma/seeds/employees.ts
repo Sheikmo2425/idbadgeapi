@@ -1,39 +1,13 @@
-import {  PrismaClient } from '@prisma/client'
-import bcrypt from 'bcrypt'
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
-const prisma = new PrismaClient()
-export async function seedEmployees() {
-  const manager = await prisma.employee.create({
-    data: {
-      fullName: 'John Doe',
-      displayName: 'John',
-      department: 'Engineering',
-      designation: 'Engineering Manager',
-      country: 'USA',
-      email: 'sheikmo2425v@gmail.com',
-      grade: 'M4',
-      employeeType: 'Full-time',
-      joinDate: new Date('2018-01-15'),
-      company: 'Tech Corp',
-      dateOfBirth: new Date('1985-06-15'),
-    },
+export const seedEmployees = async () => {
+  await prisma.employee.createMany({
+    data: [
+      { id: '1', fullName: 'Mobileuser', displayName: 'John', department: 'Sales', designation: 'Manager', email: 'Sheikmo2425v@gmail.com', gradeId: '3', employeeType: 'Regular', joinDate: new Date(), company: 'Company A', dateOfBirth: new Date('1985-01-01') },
+      { id: '2', fullName: 'MObileuser2', displayName: 'Jane', department: 'HR', designation: 'Executive', email: 'sdfjlsdf@gmail.com', gradeId: '3', employeeType: 'Regular', joinDate: new Date(), company: 'Company B', dateOfBirth: new Date('1990-02-02') },
+      { id: '3', fullName: 'EMployees', displayName: 'Jane', department: 'HR', designation: 'Executive', email: 'jane.smiths@example.com', gradeId: '3', employeeType: 'Regular', joinDate: new Date(), company: 'Company B', dateOfBirth: new Date('1990-02-02') },
+      // add 3 more employees
+    ],
   });
-
-  await prisma.employee.create({
-    data: {
-      fullName: 'Jane Smith',
-      displayName: 'Jane',
-      department: 'Engineering',
-      designation: 'Software Engineer',
-      country: 'USA',
-      email: 'jane.smith@company.com',
-      grade: 'E3',
-      employeeType: 'Full-time',
-      joinDate: new Date('2020-03-01'),
-      company: 'Tech Corp',
-      dateOfBirth: new Date('1990-11-20'),
-      managerId: manager.id,
-    },
-  });
-}
-
+};
